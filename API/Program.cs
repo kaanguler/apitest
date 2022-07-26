@@ -1,14 +1,18 @@
+using API.Core.Interface;
 using API.Infrastructure.DataContext;
+using API.Infrastructure.Implements;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
 builder.Services.AddControllers();
 builder.Services.AddDbContext<StoreContext>(options =>
         options.UseSqlServer(
             builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
 
 
