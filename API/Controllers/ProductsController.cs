@@ -1,5 +1,5 @@
-﻿using API.DATA.DataContext;
-using API.DATA.DbModels;
+﻿using API.Core.DbModels;
+using API.Infrastructure.DataContext;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,7 +27,18 @@ namespace API.Controllers
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
 
-            return await _context.Products.FindAsync(id)!;
+            
+            var data = await _context.Products.FindAsync(id);
+
+            if (data != null)
+            {
+                return data;
+            }
+            else
+            {
+                return new Product();
+            }
+                
         }
 
 

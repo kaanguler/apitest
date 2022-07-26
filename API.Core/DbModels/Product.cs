@@ -1,4 +1,4 @@
-﻿namespace API.DATA.DbModels
+﻿namespace API.Core.DbModels
 {
     public class Product
     {
